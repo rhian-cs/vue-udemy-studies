@@ -1,3 +1,3 @@
-# Personal VueJS Study Library
+# My Personal VueJS Study Library
 
-Following Leonardo Moura's Course on Udemy: [https://www.udemy.com/course/vue-js-completo/](https://www.udemy.com/course/vue-js-completo/)
+This is my study library, following [Leonardo Moura's Course](https://www.udemy.com/course/vue-js-completo/) on Udemy, that was based on [Maximilian Schwarzmüller's Course](https://www.udemy.com/course/vuejs-2-the-complete-guide/) (on Udemy as well).
