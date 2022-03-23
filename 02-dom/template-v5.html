@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue JS</title>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+
+    <div id="app">
+      <p v-once>{{ title }}</p>
+      <p>{{ greeting() }}</p>
+      <!-- <a v-bind:href="link">DuckDuckGo</a> -->
+      <a :href="link">DuckDuckGo</a>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          title: "Usando VueJS!!",
+          link: "https://duckduckgo.com",
+        },
+        methods: {
+          greeting() {
+            this.title = "Bom dia!!!";
+            return this.title;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
