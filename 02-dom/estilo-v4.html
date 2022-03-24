@@ -1,0 +1,60 @@
+<head>
+  <style>
+    .caixas {
+      display: flex;
+      justify-content: space-around;
+    }
+    .demo {
+      width: 100px;
+      height: 100px;
+      background-color: gray;
+    }
+
+    .c1 {
+      background-color: red;
+    }
+    .c2 {
+      background-color: green;
+    }
+    .c3 {
+      background-color: blue;
+    }
+
+    .rotate {
+      transform: rotate(45deg);
+    }
+  </style>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+  <div id="app">
+    <div class="caixas">
+      <div class="demo" :style="{'background-color': bgColor}"></div>
+      <div class="demo" :style="{backgroundColor: bgColor}"></div>
+      <div class="demo" :style="myStyle"></div>
+      <div class="demo" :style="[myStyle, {height: height}]"></div>
+    </div>
+    <hr />
+    <input type="text" v-model="bgColor" />
+    <input type="number" v-model="width" />
+  </div>
+
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        bgColor: "turquoise",
+        width: 100,
+        height: 20,
+      },
+      computed: {
+        myStyle() {
+          return {
+            backgroundColor: this.bgColor,
+            width: `${this.width}px`,
+          };
+        },
+      },
+    });
+  </script>
+</body>

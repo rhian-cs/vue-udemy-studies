@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue JS</title>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+
+    <div id="app">
+      <p>{{ count }}</p>
+      <p>{{ count > 10 ? "Maior que 10" : "Menor ou igual a 10" }}</p>
+      <button v-on:click="increment">Somar 1</button>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          count: 0,
+        },
+        methods: {
+          increment(step) {
+            this.count++;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

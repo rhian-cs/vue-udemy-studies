@@ -1,0 +1,27 @@
+<head></head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+
+  <div id="app">
+    <p>{{ count }}</p>
+    <!-- <button v-on:click="increment">Somar 1</button> -->
+    <button @click="increment">Somar 1</button>
+    <hr />
+    <!-- <input type="text" v-bind:value="count" /> -->
+    <input type="text" :value="count" />
+  </div>
+
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        count: 0,
+      },
+      methods: {
+        increment() {
+          this.count++;
+        },
+      },
+    });
+  </script>
+</body>

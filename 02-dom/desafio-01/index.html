@@ -1,25 +1,37 @@
-<script src="https://unpkg.com/vue"></script>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <script src="https://unpkg.com/vue"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
 
-<div id="desafio">
-    <!-- 1) Preencha a tag <p> abaixo com o seu Nome e Idade - usando Interpolação -->
-    <p>Usando VueJS - SEU_NOME (IDADE)</p>
-    
-    <!-- 2) Exiba sua idade multiplicada por 3 -->
-    <p></p>
-    
-    <!-- 3) Chame uma função para exibir um número randomico
+    <div id="desafio">
+      <!-- 1) Preencha a tag <p> abaixo com o seu Nome e Idade - usando Interpolação -->
+      <p>Usando VueJS - {{ name }} ({{ age }} anos)</p>
+
+      <!-- 2) Exiba sua idade multiplicada por 3 -->
+      <p>Triplo da idade é {{ age * 3 }}</p>
+
+      <!-- 3) Chame uma função para exibir um número randomico
         entre 0 and 1 (Math.random()) -->
-    <p></p>
-    
-    <!-- 4) Procure uma imagem no google e exiba na tag img 
+      <p>Número aleatório normalizado: {{ randomNumber() }}</p>
+
+      <!-- 4) Procure uma imagem no google e exiba na tag img
         fazendo o binding no atributo "src" -->
-    <div>
-        <img height="400">
+      <div>
+        <img height="400" :src="imgUrl" />
+      </div>
+
+      <!-- 5) Inicialize o input com o seu nome (use o atributo "value") -->
+      <div>
+        <input type="text" :value="name" />
+      </div>
     </div>
-    
-    <!-- 5) Inicialize o input com o seu nome (use o atributo "value") -->
-    <div>
-        <input type="text">
-    </div>
-</div>
-<script src="app.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

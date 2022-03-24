@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue JS</title>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+
+    <div id="app">
+      <p>{{ count }}</p>
+      <button v-on:click="increment(5, $event)">Somar 1</button>
+      <p v-on:mousemove="updateMousePosition">
+        Mouse: {{ x }} e {{ y }}
+        <!-- <span v-on:mousemove="stopTracking">Parar aqui!</span> -->
+        <!-- <span v-on:mousemove.stop="">Parar aqui!</span> -->
+        <span v-on:mousemove.stop.prevent="">Parar aqui!</span>
+      </p>
+
+      <!-- <a v-on:click.prevent="" href="https://duckduckgo.com">DuckDuckGo</a> -->
+      <a v-on:click="dontFollow" href="https://duckduckgo.com">DuckDuckGo</a>
+
+      <!-- <input type="text" name="" id="" v-on:keyup="showAlert" /> -->
+      <input type="text" name="" id="" v-on:keyup.enter.alt="showAlert" />
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          count: 0,
+          x: 0,
+          y: 0,
+        },
+        methods: {
+          increment(step, event) {
+            console.log(event);
+            this.count += step;
+          },
+          updateMousePosition(event) {
+            // console.log(event);
+            this.x = event.clientX;
+            this.y = event.clientY;
+          },
+          // stopTracking(event) {
+          //   event.stopPropagation();
+          // },
+          dontFollow(event) {
+            event.preventDefault();
+            console.log("Don't follow!");
+          },
+          showAlert(event) {
+            alert("Warning!");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
