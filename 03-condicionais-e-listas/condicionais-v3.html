@@ -1,0 +1,30 @@
+<head>
+  <meta charset="UTF-8" />
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+
+  <div id="app">
+    <template v-if="loggedIn">
+      <p>Usuário Logado: {{ name }}</p>
+      <p>Perfil: Admin</p>
+    </template>
+    <p v-else-if="anon">Navegando de forma Anônima</p>
+    <p v-else>Nenhum usuário logado.</p>
+    <button @click="loggedIn = !loggedIn">
+      {{ loggedIn ? 'Sair' : 'Entrar' }}
+    </button>
+    <input type="checkbox" v-model="anon" />
+  </div>
+
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        name: "Rhian",
+        loggedIn: false,
+        anon: true,
+      },
+    });
+  </script>
+</body>
