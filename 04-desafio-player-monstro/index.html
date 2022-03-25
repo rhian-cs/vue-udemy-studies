@@ -16,33 +16,61 @@
     <title>Battle Game!</title>
   </head>
   <body>
-    <h1 class="heading">Battle Game!</h1>
-    <div class="container entity-health-info-container">
-      <div class="entity-health-info">
-        <h2>Player</h2>
-        <div class="health-bar-container">
-          <div class="health-bar-scale"></div>
+    <div id="app">
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+
+      <h1 class="heading">Battle Game!</h1>
+      <div class="container entity-health-info-container">
+        <div
+          class="entity-health-info"
+          v-for="entity in entities"
+          :key="entity.name"
+        >
+          <h2>{{ entity.name }}</h2>
+          <div class="health-bar-container">
+            <div
+              class="health-bar-scale"
+              :style="{ width: entity.health + '%' }"
+            ></div>
+          </div>
+          <p class="entity-health-value">{{ entity.health }}%</p>
         </div>
-        <p class="entity-health-value">100%</p>
+      </div>
+
+      <div class="container actions-container">
+        <button
+          @click="triggerAction('attack', entities.enemy)"
+          class="action-button attack-action"
+        >
+          Attack
+        </button>
+        <button
+          @click="triggerAction('specialAttack', entities.enemy)"
+          class="action-button special-attack-action"
+        >
+          Special Attack
+        </button>
+        <button
+          @click="triggerAction('heal', entities.player)"
+          class="action-button heal-action"
+        >
+          Heal
+        </button>
+        <button class="action-button giveup-action">Flee</button>
+      </div>
+
+      <div class="container log-container">
+        <div
+          v-for="log in logs"
+          class="log-record"
+          :key="log.id"
+          :style="{backgroundColor: log.color}"
+        >
+          {{ log.message }}
+        </div>
       </div>
     </div>
 
-    <div class="container actions-container">
-      <button class="action-button attack-action">Attack</button>
-      <button class="action-button special-attack-action">
-        Special Attack
-      </button>
-      <button class="action-button heal-action">Heal</button>
-      <button class="action-button giveup-action">Flee</button>
-    </div>
-
-    <div class="container log-container">
-      <div class="log-record" style="background-color: #c24455">
-        Enemy striked Player causing 8 damage.
-      </div>
-      <div class="log-record" style="background-color: #4455c2">
-        Player striked Enemy causing 10 damage.
-      </div>
-    </div>
+    <script src="index.js"></script>
   </body>
 </html>
