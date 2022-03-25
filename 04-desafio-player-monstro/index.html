@@ -37,29 +37,57 @@
         </div>
       </div>
 
-      <div class="container actions-container">
-        <button
-          @click="triggerAction('attack', entities.enemy)"
-          class="action-button attack-action"
-        >
-          Attack
-        </button>
-        <button
-          @click="triggerAction('specialAttack', entities.enemy)"
-          class="action-button special-attack-action"
-        >
-          Special Attack
-        </button>
-        <button
-          @click="triggerAction('heal', entities.player)"
-          class="action-button heal-action"
-        >
-          Heal
-        </button>
-        <button class="action-button giveup-action">Flee</button>
+      <div class="container actions-container" v-if="!isGameFinished()">
+        <template v-if="isGameState('running')">
+          <button
+            @click="triggerAction('attack', entities.enemy)"
+            class="action-button attack-action"
+          >
+            Attack
+          </button>
+          <button
+            @click="triggerAction('specialAttack', entities.enemy)"
+            class="action-button special-attack-action"
+          >
+            Special Attack
+          </button>
+          <button
+            @click="triggerAction('heal', entities.player)"
+            class="action-button heal-action"
+          >
+            Heal
+          </button>
+          <button @click="stopGame()" class="action-button standard-action">
+            Flee
+          </button>
+        </template>
+
+        <template v-else-if="isGameState('stopped')">
+          <button @click="startGame()" class="action-button standard-action">
+            Start Game
+          </button>
+        </template>
       </div>
 
-      <div class="container log-container">
+      <div v-else class="container game-result-container">
+        <div v-if="isGameState('victory')">
+          <h3>Victory!</h3>
+
+          <button @click="stopGame()" class="action-button standard-action">
+            Restart
+          </button>
+        </div>
+
+        <div v-if="isGameState('defeat')">
+          <h3>You lose!</h3>
+
+          <button @click="stopGame()" class="action-button standard-action">
+            Restart
+          </button>
+        </div>
+      </div>
+
+      <div class="container log-container" v-if="logs.length">
         <div
           v-for="log in logs"
           class="log-record"

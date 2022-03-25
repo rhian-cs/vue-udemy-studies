@@ -12,9 +12,9 @@ new Vue({
         name: "Player",
         health: 100,
         skillRanges: {
-          attack: [-7, -10],
-          specialAttack: [-9, -12],
-          heal: [8, 12],
+          attack: [-6, -9],
+          specialAttack: [-8, -13],
+          heal: [6, 16],
         },
         color: "#4455c2",
       },
@@ -22,34 +22,68 @@ new Vue({
         name: "Enemy",
         health: 100,
         skillRanges: {
-          attack: [-7, -10],
-          specialAttack: [-9, -12],
+          attack: [-9, -11],
         },
         color: "#c24455",
       },
     },
     logs: [],
     logCount: 0,
+    gameState: "stopped",
   },
   methods: {
     triggerAction(playerAction, playerActionTarget) {
-      this.gameState = "midTurn";
-
       this.applyAction(this.entities.player, playerAction, playerActionTarget);
       this.applyAction(this.entities.enemy, "attack", this.entities.player);
-
-      this.gameState = "playerReady";
     },
 
     isGameState(state) {
-      this.gameState === state;
+      return this.gameState === state;
+    },
+
+    isGameFinished(state) {
+      return this.isGameState("victory") || this.isGameState("defeat");
     },
 
     applyAction(actor, action, target) {
       range = actor.skillRanges[action];
       skillValue = randomValueFromRange(range);
       target.health += skillValue;
+
+      if (target.health > 100) {
+        skillValue -= target.health - 100;
+        target.health = 100;
+      } else if (target.health < 0) {
+        skillValue += target.health;
+        target.health = 0;
+      }
+
+      if (target.health == 0) {
+        switch (target.name) {
+          case "Player":
+            this.gameState = "defeat";
+
+            break;
+          case "Enemy":
+            this.gameState = "victory";
+
+          default:
+            break;
+        }
+      }
+
       this.updateActionLog(actor, action, target, skillValue);
+    },
+
+    startGame() {
+      this.gameState = "running";
+    },
+
+    stopGame() {
+      this.entities.player.health = 100;
+      this.entities.enemy.health = 100;
+      this.logs = [];
+      this.gameState = "stopped";
     },
 
     updateActionLog(actor, ...args) {
