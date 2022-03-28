@@ -1,0 +1,34 @@
+<head>
+  <meta charset="UTF-8" />
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+
+  <div id="app">
+    <h1 ref="lessonRef">{{ lesson }}</h1>
+    <h2>{{ moduleName }}</h2>
+    <button @click="updateLesson">Update Lesson</button>
+    <button @click="updateModuleName">Update Module</button>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          lesson: "Lesson: Using Refs",
+          moduleName: "Module: The Vue Instance",
+        },
+        methods: {
+          updateLesson() {
+            this.lesson += "#";
+          },
+          updateModuleName() {
+            this.moduleName += "#";
+            console.log(this.$refs.lessonRef.innerText);
+          },
+        },
+      });
+
+      vm.$refs.lessonRef.innerText = "Alterado diretamente :(";
+    </script>
+  </div>
+</body>

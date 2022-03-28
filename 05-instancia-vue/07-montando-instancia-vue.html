@@ -1,0 +1,38 @@
+<head>
+  <meta charset="UTF-8" />
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+
+  <div id="app"></div>
+
+  <script>
+    const vm = new Vue({
+      // el: "#app",
+      template: `
+        <div>
+          <h1>{{ lesson }}</h1>
+          <h2>{{ moduleName }}</h2>
+          <button @click="updateLesson">Update Lesson</button>
+          <button @click="updateModuleName">Update Module</button>
+        </div>
+      `,
+      data: {
+        lesson: "Lesson: Building the Vue Instance",
+        moduleName: "Module: The Vue Instance",
+      },
+      methods: {
+        updateLesson() {
+          this.lesson += "#";
+        },
+        updateModuleName() {
+          this.moduleName += "#";
+        },
+      },
+    });
+
+    // vm.$mount("#app");
+    vm.$mount();
+    document.querySelector("#app").appendChild(vm.$el);
+  </script>
+</body>
