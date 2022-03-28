@@ -30,6 +30,7 @@
           <div class="health-bar-container">
             <div
               class="health-bar-scale"
+              :class="entity.health > 20 ? 'health-bar-scale--high' : 'health-bar-scale--low'"
               :style="{ width: entity.health + '%' }"
             ></div>
           </div>

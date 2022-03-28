@@ -49,7 +49,14 @@ p {
 
 .health-bar-scale {
   height: 100%;
+}
+
+.health-bar-scale--high {
   background-color: darkgreen;
+}
+
+.health-bar-scale--low {
+  background-color: rgb(177, 10, 10);
 }
 
 .actions-container {
