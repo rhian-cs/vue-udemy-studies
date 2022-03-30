@@ -12,10 +12,10 @@
 </template>
 
 <script>
-import AppBar from "./AppBar.vue";
-import Footer from "./Footer.vue";
-import ImageCarousel from "./ImageCarousel.vue";
-import Sidebar from "./Sidebar.vue";
+import AppBar from "./components/template/Heading.vue";
+import Footer from "./components/template/Footer.vue";
+import ImageCarousel from "./components/widgets/ImageCarousel.vue";
+import Sidebar from "./components/template/Sidebar.vue";
 
 export default {
   components: {
