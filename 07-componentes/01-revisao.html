@@ -1,0 +1,34 @@
+<head>
+  <meta charset="UTF-8" />
+</head>
+
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+
+  <div id="app">
+    <Counter></Counter>
+    <Counter></Counter>
+  </div>
+
+  <script>
+    // Registro Global
+    Vue.component("Counter", {
+      template: `
+        <div>
+          <span>{{ count }}</span>
+          <button @click="count++">+</button>
+          <button @click="count--">-</button>
+        </div>
+      `,
+      data() {
+        return {
+          count: 0,
+        };
+      },
+    });
+
+    new Vue({
+      el: "#app",
+    });
+  </script>
+</body>

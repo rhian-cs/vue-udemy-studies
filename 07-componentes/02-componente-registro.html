@@ -1,0 +1,47 @@
+<head>
+  <meta charset="UTF-8" />
+</head>
+
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+
+  <div id="app1">
+    <Counter1></Counter1>
+    <Counter1></Counter1>
+  </div>
+  <hr />
+  <div id="app2">
+    <Counter2></Counter2>
+    <Counter2></Counter2>
+  </div>
+
+  <script>
+    // Registro Global
+    const Counter = {
+      template: `
+        <div>
+          <span>{{ count }}</span>
+          <button @click="count++">+</button>
+          <button @click="count--">-</button>
+        </div>
+      `,
+      data() {
+        return {
+          count: 0,
+        };
+      },
+    };
+
+    new Vue({
+      el: "#app1",
+      // Registro Local
+      components: { Counter1: Counter },
+    });
+
+    new Vue({
+      el: "#app2",
+      // Registro Local
+      components: { Counter2: Counter },
+    });
+  </script>
+</body>
