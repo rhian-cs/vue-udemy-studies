@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
-		<usuario-lista :usuarios="usuarios" />
-		<usuario-detalhe />
+		<usuario-lista @selecaoUsuario="atualizarUsuarioSelecionado" :usuarios="usuarios" />
+		<usuario-detalhe :usuario="usuarioSelecionado" />
 	</div>
 </template>
 
@@ -24,10 +24,10 @@ export default {
       usuarioSelecionado: null,
     };
   },
-  created() {
-    this.$on("selecaoUsuario", ({ usuario }) => {
+  methods: {
+    atualizarUsuarioSelecionado({ usuario }) {
       this.usuarioSelecionado = usuario;
-    });
+    },
   },
 };
 </script>
