@@ -1,9 +1,9 @@
 <template>
   <div>
     <h1>Tarefas</h1>
-		<TaskCompletion />
-		<NewTask />
-		<TaskList />
+		<TaskCompletion :partialCount="completedTasksCount" :totalCount="tasksCount" />
+		<NewTask :onClick="addTask" />
+		<TaskList :tasks="tasks" />
   </div>
 </template>
 
@@ -18,8 +18,19 @@ export default {
     return { tasks: [] };
   },
   methods: {
-    addTask(task) {
-      return [...tasks, task];
+    addTask(taskName) {
+      const randomId = Math.floor(Math.random() * 1000000000);
+      const task = { id: randomId, text: taskName, completed: false };
+
+      this.tasks = [...this.tasks, task];
+    },
+  },
+  computed: {
+    completedTasksCount() {
+      return this.tasks.filter((task) => task.completed).length;
+    },
+    tasksCount() {
+      return this.tasks.length;
     },
   },
 };
