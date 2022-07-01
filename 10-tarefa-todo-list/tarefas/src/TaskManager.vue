@@ -1,19 +1,19 @@
 <template>
-  <div>
+  <div class="tasks-container">
     <h1>Tarefas</h1>
-		<TaskCompletion :partialCount="completedTasksCount" :totalCount="tasksCount" />
-		<NewTask :onClick="addTask" />
+		<TaskProgressBar :partialCount="completedTasksCount" :totalCount="tasksCount" />
+		<TaskForm :onSubmit="addTask" />
 		<TaskList :tasks="tasks" />
   </div>
 </template>
 
 <script>
-import TaskCompletion from "./TaskCompletion.vue";
-import NewTask from "./NewTask.vue";
+import TaskProgressBar from "./TaskProgressBar.vue";
+import TaskForm from "./TaskForm.vue";
 import TaskList from "./TaskList.vue";
 
 export default {
-  components: { TaskCompletion, NewTask, TaskList },
+  components: { TaskProgressBar, TaskForm, TaskList },
   data() {
     return { tasks: [] };
   },
@@ -36,5 +36,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.tasks-container {
+  display: flex;
+  flex-direction: column;
+}
 </style>
