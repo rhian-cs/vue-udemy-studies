@@ -1,5 +1,9 @@
 <template>
-  <div @click="task.markAsComplete()" class="task-card">
+  <div
+    @click="onClick"
+    class="task-card"
+    :class="{ 'completed-task': this.task.completed, 'pending-task': !this.task.completed }"
+  >
     <div class="cross" @click="onClose">&times;</div>
     <div class="card-content">{{task.text}}</div>
   </div>
@@ -9,6 +13,7 @@
 export default {
   props: {
     task: Object,
+    onClick: Function,
     onClose: Function,
   },
 };
@@ -16,13 +21,19 @@ export default {
 
 <style scoped>
 .task-card {
-  background-color: rgb(188, 42, 26);
   margin: 0.5rem;
   border-radius: 5px;
   position: relative;
   cursor: pointer;
   max-width: 256px;
   word-wrap: break-word;
+}
+.completed-task {
+  background-color: rgb(26, 188, 42);
+}
+
+.pending-task {
+  background-color: rgb(188, 42, 26);
 }
 
 .cross-container {

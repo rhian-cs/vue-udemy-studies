@@ -4,6 +4,7 @@
       v-for="task in tasks"
       :task="task"
       :key="task.id"
+      :onClick="() => markAsComplete(task.id)"
       :onClose="() => deleteTask(task.id)"
     />
   </div>
@@ -11,9 +12,11 @@
 
 <script>
 import TaskCard from "./TaskCard.vue";
+
 export default {
   props: {
     tasks: Array,
+    markAsComplete: Function,
     deleteTask: Function,
   },
   components: { TaskCard },

@@ -3,7 +3,11 @@
     <h1>Tarefas</h1>
 		<TaskProgressBar :partialCount="completedTasksCount" :totalCount="tasksCount" />
 		<TaskForm :onSubmit="addTask" />
-		<TaskList :tasks="tasks" :deleteTask="deleteTask" />
+		<TaskList
+      :tasks="tasks"
+      :markAsComplete="markAsComplete"
+      :deleteTask="deleteTask"
+    />
   </div>
 </template>
 
@@ -32,6 +36,9 @@ export default {
           this.complete = true;
         },
       };
+    },
+    markAsComplete(taskId) {
+      this.tasks.find((task) => task.id === taskId);
     },
     deleteTask(taskId) {
       this.tasks = this.tasks.filter((task) => task.id !== taskId);
