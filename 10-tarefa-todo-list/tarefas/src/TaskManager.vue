@@ -3,7 +3,7 @@
     <h1>Tarefas</h1>
 		<TaskProgressBar :partialCount="completedTasksCount" :totalCount="tasksCount" />
 		<TaskForm :onSubmit="addTask" />
-		<TaskList :tasks="tasks" />
+		<TaskList :tasks="tasks" :deleteTask="deleteTask" />
   </div>
 </template>
 
@@ -19,19 +19,22 @@ export default {
   },
   methods: {
     addTask(taskName) {
+      this.tasks = [...this.tasks, this.generateNewTask(taskName)];
+    },
+    generateNewTask(taskName) {
       const randomId = Math.floor(Math.random() * 1000000000);
-      const task = {
+
+      return {
         id: randomId,
         text: taskName,
         completed: false,
         markAsComplete: () => {
-          // eslint-disable-next-line
-          console.log("Task completed.");
           this.complete = true;
         },
       };
-
-      this.tasks = [...this.tasks, task];
+    },
+    deleteTask(taskId) {
+      this.tasks = this.tasks.filter((task) => task.id !== taskId);
     },
   },
   computed: {

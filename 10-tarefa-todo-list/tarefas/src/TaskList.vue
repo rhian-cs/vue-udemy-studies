@@ -1,7 +1,12 @@
 <template>
-<div class="task-list">
-  <TaskCard v-for="task in tasks" :task="task" v-bind:key="task.id"/>
-</div>
+  <div class="task-list">
+    <TaskCard
+      v-for="task in tasks"
+      :task="task"
+      :key="task.id"
+      :onClose="() => deleteTask(task.id)"
+    />
+  </div>
 </template>
 
 <script>
@@ -9,6 +14,7 @@ import TaskCard from "./TaskCard.vue";
 export default {
   props: {
     tasks: Array,
+    deleteTask: Function,
   },
   components: { TaskCard },
 };

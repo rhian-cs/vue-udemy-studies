@@ -1,6 +1,6 @@
 <template>
   <div @click="task.markAsComplete()" class="task-card">
-    <div class="cross">&times;</div>
+    <div class="cross" @click="onClose">&times;</div>
     <div class="card-content">{{task.text}}</div>
   </div>
 </template>
@@ -9,6 +9,7 @@
 export default {
   props: {
     task: Object,
+    onClose: Function,
   },
 };
 </script>
