@@ -8,7 +8,9 @@
 <script>
 export default {
   data() {
-    return { taskName: "" };
+    return {
+      taskName: "",
+    };
   },
   props: {
     onSubmit: Function,
@@ -16,6 +18,9 @@ export default {
   methods: {
     submit(taskName) {
       this.onSubmit(taskName);
+      this.clearTaskName();
+    },
+    clearTaskName() {
       this.taskName = "";
     },
   },

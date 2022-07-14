@@ -20,7 +20,16 @@ export default {
   methods: {
     addTask(taskName) {
       const randomId = Math.floor(Math.random() * 1000000000);
-      const task = { id: randomId, text: taskName, completed: false };
+      const task = {
+        id: randomId,
+        text: taskName,
+        completed: false,
+        markAsComplete: () => {
+          // eslint-disable-next-line
+          console.log("Task completed.");
+          this.complete = true;
+        },
+      };
 
       this.tasks = [...this.tasks, task];
     },
