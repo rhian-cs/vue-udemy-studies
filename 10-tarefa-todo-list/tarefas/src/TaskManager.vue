@@ -5,7 +5,7 @@
 		<TaskForm :onSubmit="addTask" />
 		<TaskList
       :tasks="tasks"
-      :markAsComplete="markAsComplete"
+      :toggleCompletion="toggleCompletion"
       :deleteTask="deleteTask"
     />
   </div>
@@ -32,13 +32,14 @@ export default {
         id: randomId,
         text: taskName,
         completed: false,
-        markAsComplete: () => {
-          this.complete = true;
-        },
       };
     },
-    markAsComplete(taskId) {
-      this.tasks.find((task) => task.id === taskId);
+    toggleCompletion(taskId) {
+      const task = this.tasks.find((task) => task.id === taskId);
+
+      if (!task) return;
+
+      task.completed = !task.completed;
     },
     deleteTask(taskId) {
       this.tasks = this.tasks.filter((task) => task.id !== taskId);
